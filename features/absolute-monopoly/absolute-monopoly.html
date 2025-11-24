@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Absolute Monopoly</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./absolute-monopoly.css" />
+    <link rel="stylesheet" type="text/css" href="../../styles/main.css" />
+    <script type="module" src="./absolute-monopoly.js" defer></script>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Absolute Monopoly</h1>
+      <a
+      href="../character-selection/character-selection.html"
+      class="back-button"
+      >← Back to Player Selection</a
+    >
+
+      <main class="main-grid">
+        <!-- LEFT: Player panel -->
+        <section class="card" aria-labelledby="playerTitle">
+          <div class="avatar-tile">
+            <img class="avatar" src="/public/avatar.png" />
+          </div>
+          <div class="rule"></div>
+          <h2 id="playerTitle" class="pname">Player 1 Name</h2>
+
+          <div class="label">STATS</div>
+          <div class="playerStats">
+          </div>
+
+          <div class="label">ITEMS</div>
+          <div id="playerItems" class="mono"></div>
+        </section>
+
+        <!-- MIDDLE: Controls + numbers -->
+        <section class="stack" aria-label="Game Controls">
+          <div><button class="btn" type="button">Make Item</button></div>
+
+          <div class="section">
+            <h2>BUSINESS</h2>
+            <div class="underline"></div>
+
+            <div class="kv-row">
+              <div class="mono">Available Funds:</div>
+              <div class="mono">$<span id="funds">_____</span></div>
+            </div>
+            <div class="kv-row">
+              <div class="mono">Unsold Inventory:</div>
+              <div class="mono"><span id="inventory">_____</span></div>
+            </div>
+            <div class="kv-row">
+              <div class="mono">Public Demand:</div>
+              <div class="mono"><span id="demand">__</span>%</div>
+            </div>
+            <div class="kv-row">
+              <div class="mono">Price per Item:</div>
+              <div>
+                <span id="priceValue" class="mono price-label">$1</span>
+                <button class="pill-decrease" aria-label="decrease price">−</button>
+                <button class="pill-increase" aria-label="increase price">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h2>MANUFACTURING</h2>
+            <div class="underline"></div>
+
+            <div class="kv-row">
+              <div class="mono">Items per Second:</div>
+              <div class="mono"><span id="ips">_____</span></div>
+            </div>
+            <div class="kv-row">
+              <div class="mono">Remaining Raw Material:</div>
+              <div class="mono"><span id="raw">_____</span></div>
+            </div>
+            <div class="kv-row">
+              <div></div>
+              <a class="purchase mono" href="#" role="button"
+                >Purchase ($_____)</a
+              >
+            </div>
+            <div class="kv-row">
+              <div class="mono">Factories:</div>
+              <div class="mono"><span id="factories">_____</span></div>
+            </div>
+            <div class="kv-row">
+              <div></div>
+              <a class="purchase mono" href="#" role="button"
+                >Purchase ($_____)</a
+              >
+            </div>
+          </div>
+        </section>
+
+        <!-- RIGHT: NPC bubble -->
+        <aside class="npc" aria-label="Sassy NPC">
+          <div id="npcBubble" class="bubble mono">skill issue</div>
+          <span class="avatar" aria-hidden="true"
+            ><img class="avatar" src="/public/avatar.png"
+          /></span>
+          <div class="npc-label">SASSY<br />NPC</div>
+        </aside>
+      </main>
+    </div>
+  </body>
+</html>

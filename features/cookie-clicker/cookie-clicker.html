@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bake or Be Baked</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./cookie-clicker.css" />
+    <link rel="stylesheet" type="text/css" href="../../styles/main.css" />
+    <script type="module" src="./cookie-clicker.js" defer></script>
+</head>
+
+<body>
+    <h1>Bake or Be Baked</h1>
+    <a
+      href="../character-selection/character-selection.html"
+      class="back-button"
+      >← Back to Player Selection</a
+    >
+
+    <div class="players-container">
+        <!-- Player 1 -->
+        <div class="player-box">
+            <div class="player-title">Player 1</div>
+            <div id="stats-p1" hidden>
+                <p id="resilience-p1"></p>
+                <p id="exhaustion-p1"></p>
+                <p id="defense-p1"></p>
+            </div>
+            <div class="score-label">TOTAL SCORE</div>
+            <div class="score-count" id="score-count-p1">##</div>
+
+            <div class="progress-bar">
+                <div class="progress-health" id="progress-health-p1"></div>
+                <div class="progress-damage" id="progress-damage-p1"></div>
+            </div>
+
+            <div class="buttons">
+                <button class="bake-btn" id="bake-p1">Bake</button>
+                <button class="stats-btn" id="stats-player-1">Stats</button>
+                <button class="smack-btn" id="smack-p1">smack</button>
+                <button class="consume-btn" id="consume-p1">Consume</button>
+            </div>
+        </div>
+
+        <!-- Player 2 -->
+        <div class="player-box">
+            <div class="player-title">Player 2</div>
+            <div id="stats-p2" hidden>
+                <p id="resilience-p2"></p>
+                <p id="exhaustion-p2"></p>
+                <p id="defense-p2"></p>
+            </div>
+            <div class="score-label">TOTAL SCORE</div>
+            <div class="score-count" id="score-count-p2">##</div>
+
+            <div class="progress-bar">
+                <div class="progress-health" id="progress-health-p2"></div>
+                <div class="progress-damage" id="progress-damage-p2"></div>
+            </div>
+
+            <div class="buttons">
+                <button class="bake-btn" id="bake-p2">Bake</button>
+                <button class="stats-btn" id="stats-player-2">Stats</button>
+                <button class="smack-btn" id="smack-p2">smack</button>
+                <button class="consume-btn" id="consume-p2">Consume</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

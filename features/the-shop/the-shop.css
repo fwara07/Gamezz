@@ -1,0 +1,126 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; font-family: system-ui, -apple-system, Arial, sans-serif; background: #fff; color: #111; }
+
+/* Header */
+.site-header {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  padding: 24px 16px 8px;
+  z-index: 10;
+  border-bottom: 1px solid #f0f0f0;
+}
+.site-header h1 {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+/* Each item fills most of the viewport to create a "panel" feel */
+.item {
+  min-height: 90vh;
+  display: grid;
+  place-items: center;
+  padding: 40px 24px;
+}
+
+/* 3-column product layout like your screenshot */
+.product-grid {
+  width: 100%;
+  max-width: 1100px;
+  display: grid;
+  grid-template-columns: 1fr 520px 1fr; /* left text / big image / right meta */
+  gap: 24px;
+  align-items: center;
+}
+
+/* Left column: title + description */
+.info-left { max-width: 420px; justify-self: start; }
+.item-title {
+  margin: 0 0 12px;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.item-desc {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #4a4a4a;
+}
+
+/* Middle column: big image */
+.item-image-wrap {
+  display: grid;
+  place-items: center;
+}
+.item-image {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  display: block;
+  /* opacity: 0; */
+  transition: opacity 300ms linear;
+}
+.item-image.loaded { opacity: 1; }
+
+/* Right column: price, rating, button */
+.info-right { justify-self: start; }
+.item-price {
+  margin: 0 0 8px;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+}
+.rating-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.stars {
+  font-size: 18px;        /* ★ characters */
+  letter-spacing: 1px;
+}
+.count {
+  font-size: 12px;
+  color: #666;
+}
+.purchase-btn {
+  display: inline-block;
+  padding: 6px 14px;
+  font-size: 12px;
+  color: #fff;
+  background: #000;
+  border: 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 0 rgba(0,0,0,0.35);
+  cursor: pointer;
+}
+.purchase-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.35);
+}
+
+/* Reveal animation for the side info blocks when in view */
+.info-left, .info-right {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 220ms linear, transform 220ms ease-out;
+}
+.item.visible .info-left,
+.item.visible .info-right {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile: stack columns */
+@media (max-width: 860px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    max-width: 560px;
+  }
+  .info-left, .info-right { justify-self: start; }
+}

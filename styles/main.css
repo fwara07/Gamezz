@@ -1,0 +1,23 @@
+/* Back button (top-right corner) */
+.back-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #222;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 16px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+  z-index: 1000;
+}
+
+.back-button:hover {
+  background-color: #444;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 40px;
+}

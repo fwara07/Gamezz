@@ -1,0 +1,218 @@
+/* useful subset for absolute-monopoly.html     */
+
+:root {
+--bg: #fff;
+--text: #111;
+--muted: #6b7280;
+--line: #e5e7eb;
+--tile: #f5f5f5;
+--tile-selected: #a3e3b8;
+--btn: #1f2937;
+--btn-text: #fff;
+--radius: 20px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+margin: 0;
+background: var(--bg);
+color: var(--text);
+font-family: Inter, system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 28px;
+min-height: 100vh;
+}
+
+.wrap { width: min(1100px, 100%); }
+
+h1 {
+margin: 8px 0 32px;
+text-align: center;
+font-weight: 800;
+letter-spacing: .2px;
+font-size: clamp(20px, 3.2vw, 28px);
+}
+
+/* layout */
+.main-grid {
+display: grid;
+grid-template-columns: 1.1fr .9fr 1fr;
+gap: 36px;
+align-items: start;
+width: min(1200px, 100%);
+margin: 0 auto;
+}
+
+/* left card */
+.card {
+border: 2px solid #111;
+border-radius: 18px;
+padding: 26px 24px;
+box-shadow: 0 10px 25px rgba(0, 0, 0, .07);
+}
+.card .avatar-tile {
+width: 160px;
+height: 160px;
+background: #f7f7f7;
+border: 1px solid var(--line);
+}
+.card .avatar {
+width: 96px;
+height: 96px;
+}
+.rule {
+height: 1px;
+background: #d1d5db;
+margin: 10px 0 16px;
+}
+.pname {
+font-size: 28px;
+font-weight: 600;
+margin: 0 0 8px;
+}
+.label {
+font-size: 12px;
+color: var(--muted);
+letter-spacing: .22em;
+font-weight: 800;
+margin-top: 18px;
+margin-bottom: 10px;
+}
+
+/* shared avatar/tile primitives */
+.avatar-tile {
+width: 140px;
+height: 140px;
+border-radius: 6px;
+display: grid;
+place-items: center;
+background: var(--tile);
+transition: background .2s ease;
+}
+.avatar {
+width: 88px;
+height: 88px;
+background: #000;
+}
+
+/* middle column: controls + numbers */
+.stack {
+display: flex;
+flex-direction: column;
+gap: 26px;
+}
+.section { padding-top: 6px; }
+.section h2 {
+font-size: 14px;
+letter-spacing: .22em;
+color: #111;
+font-weight: 800;
+margin: 0 0 10px;
+}
+.underline {
+height: 1px;
+background: #cfd3d9;
+margin: 6px 0 14px;
+}
+.kv-row {
+display: grid;
+grid-template-columns: 180px 1fr;
+gap: 10px;
+align-items: center;
+margin: 8px 0;
+}
+.mono {
+font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+.price-label { margin-right: 8px; }
+
+/* buttons */
+.btn {
+background: var(--btn);
+color: var(--btn-text);
+border: none;
+padding: 16px 28px;
+border-radius: 999px;
+font-weight: 600;
+font-size: 16px;
+letter-spacing: .2px;
+cursor: pointer;
+box-shadow: 0 8px 22px rgba(0, 0, 0, .08);
+}
+.btn:active { transform: translateY(1px); }
+
+/* price adjusters: reuse pill styling for +/- */
+.pill,
+.pill-decrease,
+.pill-increase {
+border: 1px solid #d1d5db;
+background: #f3f4f6;
+border-radius: 10px;
+padding: 6px 10px;
+min-width: 34px;
+text-align: center;
+cursor: pointer;
+user-select: none;
+}
+
+/* purchase links */
+.purchase {
+display: inline-block;
+background: #f3f4f6;
+border: 1px solid #d1d5db;
+padding: 10px 14px;
+border-radius: 10px;
+cursor: pointer;
+}
+
+/* right column: NPC */
+.npc {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 22px;
+margin-top: 8px;
+}
+.bubble {
+width: min(520px, 100%);
+min-height: 170px;
+background: #d9d9d9;
+border-radius: 16px;
+position: relative;
+color: #444;
+display: flex;
+align-items: center;
+justify-content: center;
+text-align: center;
+padding: 18px;
+}
+.bubble::after {
+content: "";
+position: absolute;
+bottom: -18px;
+left: 52%;
+width: 0;
+height: 0;
+border: 18px solid transparent;
+border-top-color: #d9d9d9;
+filter: drop-shadow(0 2px 2px rgba(0, 0, 0, .05));
+}
+.npc .avatar { width: 110px; height: 110px; }
+.npc-label {
+margin-top: -10px;
+text-align: center;
+letter-spacing: .35em;
+font-weight: 800;
+}
+
+/* responsive */
+@media (max-width:1000px) {
+.main-grid {
+grid-template-columns: 1fr;
+gap: 28px;
+}
+.npc { align-items: flex-start; }
+}

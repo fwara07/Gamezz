@@ -1,0 +1,102 @@
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    padding: 40px;
+    background-color: #fff;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 40px;
+}
+
+.players-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.player-box {
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 20px;
+    width: 400px;
+    text-align: left;
+}
+
+.player-title {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.score-label {
+    font-size: 12px;
+    color: #444;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.stats {
+    font-size: 11px;
+    color: #444;
+    letter-spacing: 1px;
+}
+
+.score-count {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.progress-bar {
+    display: flex;
+    height: 20px;
+    background-color: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.progress-health {
+    background-color: green;
+    /* green */
+    width: 50%;
+}
+
+.progress-damage {
+    background-color: red;
+    /* red */
+    width: 50%;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons button {
+    flex: 1;
+    margin: 0 5px;
+    padding: 10px 0;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    color: white;
+}
+
+.bake-btn {
+    background-color: #000;
+}
+
+.stats-btn {
+    background-color: blue;
+}
+
+.smack-btn {
+    background-color: #af5680;
+}
+
+.consume-btn {
+    background-color: #389738;
+}
