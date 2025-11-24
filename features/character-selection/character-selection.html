@@ -1,85 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Player Selection</title>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="./character-selection.css" />
     <link rel="stylesheet" type="text/css" href="../../styles/main.css" />
     <script type="module" src="./character-selection.js" defer></script>
-</head>
-<body>
-  <div class="wrap">
-    <h1>Choose your fighter</h1>
-    <div id="formErrors" class="error" role="alert" aria-live="assertive" hidden></div>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Choose your fighter</h1>
+      <div
+        id="formErrors"
+        class="error"
+        role="alert"
+        aria-live="assertive"
+        hidden
+      ></div>
 
-    <!-- Wrap everything in a form so successful validation submits -->
-    <form id="fighterForm" action="../main-menu/main-menu.html" method="get" novalidate>
-      <input type="hidden" name="selectedPlayer" id="selectedPlayer" value="" />
+      <!-- Wrap everything in a form so successful validation submits -->
+      <form
+        id="fighterForm"
+        action="../main-menu/main-menu.html"
+        method="get"
+        novalidate
+      >
+        <input
+          type="hidden"
+          name="selectedPlayer"
+          id="selectedPlayer"
+          value=""
+        />
 
-      <section class="arena" id="arena">
-        <!-- Player 1 -->
-        <div class="player" data-player="p1" role="button" tabindex="0" aria-pressed="false" aria-label="Select Player 1">
-          <div class="avatar-tile"><img class="avatar" src="/public/avatar.png"></div>
-          <div class="divider"></div>
-          <div class="name">Player 1 Name</div>
-          <div class="stats-title">STATS</div>
-        </div>
-
-        <!-- Player 2 -->
-        <div class="player" data-player="p2" role="button" tabindex="0" aria-pressed="false" aria-label="Select Player 2">
-          <div class="avatar-tile"><img class="avatar" src="/public/avatar.png"></div>
-          <div class="divider"></div>
-          <div class="name">Player 2 Name</div>
-          <div class="stats-title">STATS</div>
-        </div>
-
-        <!-- Guest (selecting this means "Guest player") -->
-        <div class="panel player" data-player="guest" role="button" tabindex="0" aria-pressed="false" aria-label="Select Guest Player">
-          <div class="avatar-tile avatar-tile--guest">
-            <img class="avatar" src="/public/avatar.png">
+        <section class="arena" id="arena">
+          <!-- Player 1 -->
+          <div
+            class="player"
+            data-player="p1"
+            role="button"
+            tabindex="0"
+            aria-pressed="false"
+            aria-label="Select Player 1"
+          >
+            <div class="avatar-tile">
+              <img class="avatar" src="../../public/avatar.png" />
+            </div>
+            <div class="divider"></div>
+            <div class="name">Player 1 Name</div>
+            <div class="stats-title">STATS</div>
           </div>
 
-          <div class="row row--mt-12">
-            <input class="input" id="guestName" name="guestName" placeholder="Guest Name (identifier)" aria-label="Guest Name" />
-            <input class="input" id="guestAge" name="guestAge" placeholder="Age" inputmode="numeric" aria-label="Age" />
+          <!-- Player 2 -->
+          <div
+            class="player"
+            data-player="p2"
+            role="button"
+            tabindex="0"
+            aria-pressed="false"
+            aria-label="Select Player 2"
+          >
+            <div class="avatar-tile">
+              <img class="avatar" src="../../public/avatar.png" />
+            </div>
+            <div class="divider"></div>
+            <div class="name">Player 2 Name</div>
+            <div class="stats-title">STATS</div>
           </div>
 
-          <div class="row">
-            <input class="file" type="file" id="guestImage" name="guestImage" accept="image/*" aria-label="Upload avatar image" />
-          </div>
-          <div class="help">Upload a face/emoji image (PNG/JPG).</div>
+          <!-- Guest (selecting this means "Guest player") -->
+          <div
+            class="panel player"
+            data-player="guest"
+            role="button"
+            tabindex="0"
+            aria-pressed="false"
+            aria-label="Select Guest Player"
+          >
+            <div class="avatar-tile avatar-tile--guest">
+              <img class="avatar" src="../../public/avatar.png" />
+            </div>
 
-          <div class="stats-title" style="margin-top:8px">STATS</div>
+            <div class="row row--mt-12">
+              <input
+                class="input"
+                id="guestName"
+                name="guestName"
+                placeholder="Guest Name (identifier)"
+                aria-label="Guest Name"
+              />
+              <input
+                class="input"
+                id="guestAge"
+                name="guestAge"
+                placeholder="Age"
+                inputmode="numeric"
+                aria-label="Age"
+              />
+            </div>
 
-          <div class="row">
-            <div class="select-wrap">
-              <select class="select" id="resilience" name="resilience" aria-label="Resilience">
-              </select>
+            <div class="row">
+              <input
+                class="file"
+                type="file"
+                id="guestImage"
+                name="guestImage"
+                accept="image/*"
+                aria-label="Upload avatar image"
+              />
+            </div>
+            <div class="help">Upload a face/emoji image (PNG/JPG).</div>
+
+            <div class="stats-title" style="margin-top: 8px">STATS</div>
+
+            <div class="row">
+              <div class="select-wrap">
+                <select
+                  class="select"
+                  id="resilience"
+                  name="resilience"
+                  aria-label="Resilience"
+                ></select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="select-wrap">
+                <select
+                  class="select"
+                  id="exhaustion"
+                  name="exhaustion"
+                  aria-label="Exhaustion"
+                ></select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="select-wrap">
+                <select
+                  class="select"
+                  id="defense"
+                  name="defense"
+                  aria-label="Defense"
+                ></select>
+              </div>
             </div>
           </div>
+        </section>
 
-          <div class="row">
-            <div class="select-wrap">
-              <select class="select" id="exhaustion" name="exhaustion" aria-label="Exhaustion">
-              </select>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="select-wrap">
-              <select class="select" id="defense" name="defense" aria-label="Defense">
-              </select>
-            </div>
-          </div>
+        <div class="cta">
+          <button class="btn" type="submit">Start Game</button>
         </div>
-      </section>
-
-      <div class="cta">
-        <button class="btn" type="submit">Start Game</button>
-      </div>
-    </form>
-  </div>
-</body>
+      </form>
+    </div>
+  </body>
 </html>

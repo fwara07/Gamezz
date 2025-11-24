@@ -5,7 +5,7 @@ const CHARACTER_LIMIT = 20;
 const RESILIENCE_VALUES = [1.1, 1.2, 1.3, 1.4, 1.5, 1.6];
 const EXHAUSTION_VALUES = [1.1, 1.0, 0.9, 0.8, 0.7, 0.6];
 const DEFENSE_VALUES = [2, 3, 4, 5, 6];
-const AVATAR_IMG = "/public/avatar.png";
+const AVATAR_IMG = "../../public/avatar.png";
 const DEFAULT_NAME = "Unknown";
 
 // fetch characters
@@ -38,7 +38,7 @@ export async function fetchCharacters(limit = CHARACTER_LIMIT) {
       return players;
     })
     .catch((error) => {
-      console.log(error)
+      console.log(error);
       // just return a list of the players I already have
       return [PLAYER_ONE, PLAYER_TWO];
     });

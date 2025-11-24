@@ -13,23 +13,22 @@
     <div class="wrap">
       <h1>Absolute Monopoly</h1>
       <a
-      href="../character-selection/character-selection.html"
-      class="back-button"
-      >← Back to Player Selection</a
-    >
+        href="../character-selection/character-selection.html"
+        class="back-button"
+        >← Back to Player Selection</a
+      >
 
       <main class="main-grid">
         <!-- LEFT: Player panel -->
         <section class="card" aria-labelledby="playerTitle">
           <div class="avatar-tile">
-            <img class="avatar" src="/public/avatar.png" />
+            <img class="avatar" src="../../public/avatar.png" />
           </div>
           <div class="rule"></div>
           <h2 id="playerTitle" class="pname">Player 1 Name</h2>
 
           <div class="label">STATS</div>
-          <div class="playerStats">
-          </div>
+          <div class="playerStats"></div>
 
           <div class="label">ITEMS</div>
           <div id="playerItems" class="mono"></div>
@@ -59,8 +58,12 @@
               <div class="mono">Price per Item:</div>
               <div>
                 <span id="priceValue" class="mono price-label">$1</span>
-                <button class="pill-decrease" aria-label="decrease price">−</button>
-                <button class="pill-increase" aria-label="increase price">+</button>
+                <button class="pill-decrease" aria-label="decrease price">
+                  −
+                </button>
+                <button class="pill-increase" aria-label="increase price">
+                  +
+                </button>
               </div>
             </div>
           </div>
@@ -100,7 +103,7 @@
         <aside class="npc" aria-label="Sassy NPC">
           <div id="npcBubble" class="bubble mono">skill issue</div>
           <span class="avatar" aria-hidden="true"
-            ><img class="avatar" src="/public/avatar.png"
+            ><img class="avatar" src="../../public/avatar.png"
           /></span>
           <div class="npc-label">SASSY<br />NPC</div>
         </aside>
