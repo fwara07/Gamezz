@@ -1,4 +1,6 @@
 import { populateStats, PLAYER_STORAGE_KEY } from "../../utils/shared.js";
+import { fetchInsult } from "../../services/insult-api.js";
+import { fetchCharacters } from "../../services/character-api.js";
 /* ====================================================================
    SECTION: Absolute Monopoly Game
 ==================================================================== */
@@ -19,6 +21,7 @@ export const DEFAULT_STATE = {
   rawPerPurchase: 100,
   lastTick: Date.now(),
   sellProgress: 0,
+  currentMilestone: 0,
 };
 
 /// CONSTANTS
@@ -47,6 +50,10 @@ const DEMAND_PER_PRICE_INCREASE = 10;
 const PURCHASE_FACOTRY_COST_INCREASE = 1.25;
 // number of miliseconds in a second
 const MS_IN_SECS = 1000;
+// milestone shuule change when inventory is multiple of this number
+const MULTIPLE_OF_FOR_MILESTONE = 5;
+const PICKLE_RICK_IMG_SRC =
+  "https://www.pngmart.com/files/23/Pickle-Rick-PNG-Isolated-Photo.png";
 
 export function getStoredPlayer() {
   try {
@@ -60,7 +67,7 @@ export function getStoredPlayer() {
 }
 
 const storedPlayer = getStoredPlayer();
-console.log(storedPlayer)
+console.log(storedPlayer);
 // make sure name, image and stats are there
 if (
   !storedPlayer ||
@@ -79,6 +86,9 @@ if (!stats.resilience || !stats.exhaustion || !stats.defense) {
 }
 // we can use this since we are 100% sure it exists
 const { resilience, exhaustion, defense } = stats;
+
+// UI elements
+const npcImage = document.querySelector("#npcImage");
 
 // Action elements
 const fundsElement = document.querySelector("#funds");
@@ -106,12 +116,9 @@ function prePopulateSelectedPlayer() {
   playerImgElement.src = imageSource;
   // Get the player stats element
   const playerStatsElement = document.querySelector(".playerStats");
-  // Add the stats to the player stats element
-  populateStats(playerStatsElement, resilience, exhaustion, defense);
 }
 
 // Game Logic
-let lastMilestone = 0; // default to 0
 // get the state from local storage or use default
 let state = loadState();
 
@@ -149,17 +156,18 @@ function updateUI() {
   }
   // Show items visually in player box as box emoji (no pun intended)
   if (playerItemsElement) {
+    playerItemsElement.textContent = "";
     // Show up to 50 items as box emoji, then show count
     if (state.inventory === 0) {
       playerItemsElement.textContent = "(none)";
     } else if (state.inventory <= MIN_ITEMS_FOR_BOXES) {
-      let items = "";
       for (let i = 0; i < state.inventory; i++) {
-        items += "📦";
+        playerItemsElement.append(createAPickleRick());
       }
-      playerItemsElement.textContent = items;
+      // playerItemsElement.textContent = items;
     } else {
-      playerItemsElement.textContent = `📦 x${state.inventory}`;
+      playerItemsElement.append(createAPickleRick());
+      playerItemsElement.append(` x${state.inventory}`);
     }
   }
   // Update purchase links
@@ -173,30 +181,43 @@ function updateUI() {
   }
 }
 
+function createAPickleRick() {
+  // Create a new img element
+  const pickleRick = document.createElement("img");
+  pickleRick.height = 32;
+  pickleRick.width = 32;
+  pickleRick.src = PICKLE_RICK_IMG_SRC;
+  pickleRick.classList.add("pickle-rick");
+  return pickleRick;
+}
+
 // Save state to localStorage
 function saveState(state) {
   // save state to localstorage
   localStorage.setItem(GAME_STATE_KEY, JSON.stringify(state));
 }
 
+// Load initial insult
+async function updateInsult() {
+  if (npcBubbleElement) {
+    // generate a new character with every insult
+    const character = await fetchCharacters(1);
+    npcImage.src = character[0].imageSource;
+    // udapte the npc bubble text content
+    npcBubbleElement.textContent = await fetchInsult(name);
+  }
+}
+
 // Check for milestone and update NPC
-function checkMilestone() {
-  MILESTONE_MESSAGES.forEach((milestone) => {
-    // if inventory is more than or equal to the threshold
-    // AND last milestone is less than the threshold (higher threshold than last time)
-    if (
-      state.inventory >= milestone.threshold &&
-      lastMilestone < milestone.threshold
-    ) {
-      // if npcBubbleElement exists
-      if (npcBubbleElement) {
-        // udapte the npc bubble text content
-        npcBubbleElement.textContent = milestone.message;
-      }
-      // update the last milestone
-      lastMilestone = milestone.threshold;
-    }
-  });
+async function checkMilestone() {
+  // I want to go in multiples of 10 for milestones
+  if (
+    state.inventory % MULTIPLE_OF_FOR_MILESTONE == 0 &&
+    state.inventory !== state.currentMilestone
+  ) {
+    state.currentMilestone = state.inventory;
+    await updateInsult();
+  }
 }
 
 // Make one item manually
@@ -285,7 +306,6 @@ function sellItems(timePassedInMs) {
   }
 }
 
-
 // Auto-manufacture items
 function autoManufacture(timePassedInMs) {
   // Manufacture items based on items per second (ips) and available raw material
@@ -324,6 +344,8 @@ if (!name || !imageSource || !resilience || !exhaustion || !defense) {
 // populate the selected player info
 // name, image, stats
 prePopulateSelectedPlayer();
+// use this to load the very first insult
+updateInsult();
 
 // Event listeners
 // Make an item

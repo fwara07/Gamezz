@@ -1,12 +1,19 @@
 import { PLAYER_ONE, PLAYER_TWO } from "../constants/player.js";
 
 // contants
-const CHARACTER_LIMIT = 20;
+const CHARACTER_LIMIT = 4;
 const RESILIENCE_VALUES = [1.1, 1.2, 1.3, 1.4, 1.5, 1.6];
 const EXHAUSTION_VALUES = [1.1, 1.0, 0.9, 0.8, 0.7, 0.6];
 const DEFENSE_VALUES = [2, 3, 4, 5, 6];
 const AVATAR_IMG = "../../public/avatar.png";
 const DEFAULT_NAME = "Unknown";
+const MAX_PAGE = 42;
+const MIN_PAGE = 1;
+
+// get a random page number between min and max
+const getRandomPage = () => {
+  return Math.floor(Math.random() * (MAX_PAGE - MIN_PAGE + 1)) + MIN_PAGE;
+};
 
 // fetch characters
 export async function fetchCharacters(limit = CHARACTER_LIMIT) {
@@ -16,7 +23,11 @@ export async function fetchCharacters(limit = CHARACTER_LIMIT) {
     batchSize = 1;
   }
 
-  return await fetch("https://rickandmortyapi.com/api/character?page=1")
+  // the api is always going to be in the same order so we can just get a random page
+  // that way we get different characters every time if we chose only 1 character
+  return await fetch(
+    `https://rickandmortyapi.com/api/character?page=${getRandomPage()}`
+  )
     .then((res) => {
       return res.json();
     })
